@@ -22,6 +22,8 @@ export class ItemState {
 
   public clearItems(): void {
     this.items.set([]);
+
+    this.id = DEFAULT_ID;
   }
 }
 
