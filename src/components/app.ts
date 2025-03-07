@@ -59,7 +59,7 @@ export class App extends BaseComponent<'div'> {
 
       this.subs.push(
         itemComponent.remove.subscribe((id) => {
-          this.state.removeItem(id);
+          this.state.removeItems(id);
         }),
       );
     });
