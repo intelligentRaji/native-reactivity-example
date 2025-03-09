@@ -7,9 +7,9 @@ export class EventEmitter<T> {
     this.listeners.forEach((listener) => listener(value));
   }
 
-  public subscribe(callback: Listener<T>): () => void {
-    this.listeners.add(callback);
-    return this.unsubscribe.bind(this, callback);
+  public subscribe(listener: Listener<T>): () => void {
+    this.listeners.add(listener);
+    return this.unsubscribe.bind(this, listener);
   }
 
   public unsubscribe(callback: Listener<T>): void {

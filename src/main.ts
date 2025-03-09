@@ -3,4 +3,4 @@ import { App } from './components/app';
 
 const app = new App();
 
-app.mount(document.body);
+document.body.appendChild(app.element);

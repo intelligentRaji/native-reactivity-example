@@ -4,7 +4,7 @@ export type Props<T extends Tags> = {
   tag?: T;
   className?: string[];
   text?: string;
-  parent?: BaseComponent;
+  parent?: BaseComponent<Tags>;
 };
 
 export class BaseComponent<
