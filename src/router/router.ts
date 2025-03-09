@@ -1,9 +1,11 @@
+import { APP_ROUTES } from '../constants/routes';
 import { BaseComponent } from '../utils/base-component';
 import { Route } from './types/route';
+import { Paths } from './types/router-helpers';
 
-export class Router {
+export class Router<Routes extends readonly Route[]> {
   constructor(
-    private readonly routes: Route[],
+    private readonly routes: Routes,
     private outlet: BaseComponent,
   ) {
     window.addEventListener('popstate', () => {
@@ -15,7 +17,7 @@ export class Router {
     this.render(pathname);
   }
 
-  public navigate(url: string): void {
+  public navigate(url: Paths<Routes>): void {
     history.pushState(null, '', url);
 
     this.render(url);
@@ -31,3 +33,7 @@ export class Router {
     }
   }
 }
+
+const router = new Router(APP_ROUTES, new BaseComponent({ tag: 'div', className: ['outlet'] }));
+
+router.navigate('/options');
