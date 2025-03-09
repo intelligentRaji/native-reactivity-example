@@ -80,18 +80,18 @@ export class OptionsComponent extends BaseComponent<'div'> {
 
       this.subs.push(
         itemComponent.remove.subscribe((id) => {
-          this.state.removeItem(id);
+          this.state.remove(id);
         }),
       );
     });
   }
 
   private createItem(): void {
-    this.state.addItem({ text: '', wieght: 0 });
+    this.state.add({ text: '', wieght: 0 });
   }
 
   private clearItems(): void {
-    this.state.clearItems();
+    this.state.clear();
   }
 
   public override destroy(): void {

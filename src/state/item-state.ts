@@ -7,11 +7,11 @@ export class ItemState {
 
   public items = new Observable<Item[]>([]);
 
-  public addItem(item: Omit<Item, 'id'>): void {
+  public add(item: Omit<Item, 'id'>): void {
     this.items.update((items) => [...items, { ...item, id: this.id++ }]);
   }
 
-  public removeItem(id: number): void {
+  public remove(id: number): void {
     this.items.update((items) => items.filter((item) => item.id !== id));
 
     if (!this.items.value.length) {
@@ -19,7 +19,7 @@ export class ItemState {
     }
   }
 
-  public clearItems(): void {
+  public clear(): void {
     this.items.set([]);
 
     this.id = DEFAULT_ID;
