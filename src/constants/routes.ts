@@ -20,4 +20,4 @@ export const APP_ROUTES = [
 // read https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html#the-satisfies-operator
 
 // If you are creating routes inside Router constructor parameters
-// these assertions is not needed.
+// this assertion is not needed.
