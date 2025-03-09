@@ -1,4 +1,3 @@
-import { APP_ROUTES } from '../constants/routes';
 import { BaseComponent } from '../utils/base-component';
 import { Route } from './types/route';
 import { Paths } from './types/router-helpers';
@@ -33,7 +32,3 @@ export class Router<Routes extends readonly Route[]> {
     }
   }
 }
-
-const router = new Router(APP_ROUTES, new BaseComponent({ tag: 'div', className: ['outlet'] }));
-
-router.navigate('/options');
