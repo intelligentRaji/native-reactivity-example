@@ -40,7 +40,7 @@ export class OptionsComponent extends BaseComponent<'div'> {
       onClick: () => {
         interval = setInterval(() => this.createItem(), 1000);
       },
-      text: 'start generator',
+      text: 'Start generator',
     });
 
     const stopGenerator = new ButtonComponent({
@@ -49,7 +49,7 @@ export class OptionsComponent extends BaseComponent<'div'> {
           clearInterval(interval);
         }
       },
-      text: 'stop generator',
+      text: 'Stop generator',
     });
 
     this.list = new BaseComponent({ tag: 'ul', className: ['list'] });
@@ -57,20 +57,17 @@ export class OptionsComponent extends BaseComponent<'div'> {
     buttons.append(add, clear, showValue, startGenerator, stopGenerator);
     this.append(buttons, this.list);
 
-    this.drawItems(this.state.items.value);
+    this.renderItems(this.state.items.value);
 
     this.subs.push(
       this.state.items.subscribe((items) => {
-        this.drawItems(items);
+        this.renderItems(items);
       }),
     );
   }
 
-  public mount(root: HTMLElement): void {
-    root.appendChild(this.element);
-  }
-
-  private drawItems(items: Item[]): void {
+  private renderItems(items: Item[]): void {
+    // console.log is added to demonstrate unsubscribe process
     console.log(items.length);
     this.list.destroyChildren();
 
