@@ -1,7 +1,6 @@
 import { Item } from '../types/item';
 import { Observable } from '../utils/observable';
-
-const DEFAULT_ID = 1;
+import { DEFAULT_ID } from './constants/state-options';
 
 export class ItemState {
   private id = DEFAULT_ID;
