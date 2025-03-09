@@ -1,6 +1,6 @@
 import { Route } from '../router/types/route';
 
-export const appRoutes: Route[] = [
+export const APP_ROUTES: Route[] = [
   {
     path: '/options',
     component: () => import('../components/options').then((m) => new m.OptionsComponent()),
