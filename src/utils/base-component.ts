@@ -7,12 +7,16 @@ export type Props<T extends Tags> = {
   parent?: BaseComponent<Tags>;
 };
 
+export type Subscription = () => void;
+
 export class BaseComponent<
   T extends Tags = 'div',
   Node extends HTMLElementTagNameMap[T] = HTMLElementTagNameMap[T],
 > {
   private readonly _element: Node;
   private readonly _children: BaseComponent<Tags>[] = [];
+
+  private subs: (() => void)[] = [];
 
   constructor(p: Props<T> = {}) {
     this._element = document.createElement(p.tag ?? 'div') as Node;
@@ -57,10 +61,20 @@ export class BaseComponent<
 
   public destroy(): void {
     this._children.forEach((child) => child.destroy());
+    this.destroySubs();
     this._element.remove();
   }
 
   public destroyChildren(): void {
     this._children.forEach((child) => child.destroy());
+  }
+
+  public sub(...sub: Subscription[]): void {
+    this.subs.push(...sub);
+  }
+
+  public destroySubs(): void {
+    this.subs.forEach((sub) => sub());
+    this.subs = [];
   }
 }

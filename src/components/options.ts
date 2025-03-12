@@ -10,8 +10,6 @@ export class OptionsComponent extends BaseComponent<'div'> {
   private readonly state = itemState;
   private readonly list: BaseComponent<'ul'>;
 
-  private subs: ((...p: unknown[]) => void)[] = [];
-
   constructor() {
     super({
       className: ['app'],
@@ -59,7 +57,7 @@ export class OptionsComponent extends BaseComponent<'div'> {
 
     this.renderItems(this.state.items.value);
 
-    this.subs.push(
+    this.sub(
       this.state.items.subscribe((items) => {
         this.renderItems(items);
       }),
@@ -75,7 +73,7 @@ export class OptionsComponent extends BaseComponent<'div'> {
       const itemComponent = new ItemComponent(item);
       this.list.append(itemComponent);
 
-      this.subs.push(
+      this.sub(
         itemComponent.remove.subscribe((id) => {
           this.state.remove(id);
         }),
@@ -89,10 +87,5 @@ export class OptionsComponent extends BaseComponent<'div'> {
 
   private clearItems(): void {
     this.state.clear();
-  }
-
-  public override destroy(): void {
-    super.destroy();
-    this.subs.forEach((sub) => sub());
   }
 }
