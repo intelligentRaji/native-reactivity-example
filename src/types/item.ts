@@ -1,5 +1,5 @@
 export interface Item {
-  id: number;
+  readonly id: number;
   text: string;
   wieght: number;
 }
